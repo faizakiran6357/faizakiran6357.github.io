@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faiza Kiran – Flutter Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#0a0a0f;
+--bg2:#111118;
+--bg3:#16161f;
+--card:#1a1a26;
+--accent:#6c63ff;
+--accent2:#a78bfa;
+--teal:#2dd4bf;
+--pink:#f472b6;
+--text:#f0eeff;
+--muted:#8b8aaa;
+--border:rgba(108,99,255,0.18);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 5%}
+.nav-inner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;background:linear-gradient(135deg,var(--accent),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;letter-spacing:.04em;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+#hero{min-height:100vh;display:flex;align-items:center;padding:100px 5% 60px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;top:-200px;left:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(108,99,255,.12) 0%,transparent 65%);pointer-events:none}
+.hero-glow2{position:absolute;bottom:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(45,212,191,.08) 0%,transparent 65%);pointer-events:none}
+.hero-inner{max-width:1100px;margin:auto;width:100%;display:grid;grid-template-columns:1fr 380px;gap:60px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(108,99,255,.12);border:1px solid rgba(108,99,255,.3);border-radius:100px;padding:6px 16px;font-size:12px;color:var(--accent2);margin-bottom:24px;letter-spacing:.05em}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+h1{font-family:'Syne',sans-serif;font-size:clamp(36px,5vw,62px);font-weight:800;line-height:1.08;margin-bottom:20px}
+h1 span{background:linear-gradient(135deg,var(--accent),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-bio{color:var(--muted);font-size:16px;max-width:520px;margin-bottom:36px;line-height:1.75}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#8b5cf6);color:#fff;padding:13px 28px;border-radius:10px;text-decoration:none;font-weight:500;font-size:14px;border:none;cursor:pointer;transition:opacity .2s,transform .15s}
+.btn-primary:hover{opacity:.88;transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--accent2);padding:12px 27px;border-radius:10px;text-decoration:none;font-weight:500;font-size:14px;border:1px solid rgba(108,99,255,.4);transition:all .2s}
+.btn-outline:hover{background:rgba(108,99,255,.1);border-color:var(--accent)}
+.hero-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--teal))}
+.avatar-ring{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--teal));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:#fff}
+.hero-card h3{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;text-align:center;margin-bottom:4px}
+.hero-card p{color:var(--muted);font-size:13px;text-align:center;margin-bottom:22px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{background:var(--bg3);border-radius:10px;padding:14px;text-align:center}
+.stat-num{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-lbl{color:var(--muted);font-size:11px;letter-spacing:.04em;margin-top:2px}
+.contact-links{margin-top:18px;display:flex;flex-direction:column;gap:9px}
+.contact-link{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px;text-decoration:none;padding:8px 12px;border-radius:8px;transition:all .2s}
+.contact-link:hover{background:var(--bg3);color:var(--accent2)}
+.ci{width:16px;height:16px;flex-shrink:0}
+section{padding:90px 5%}
+.section-inner{max-width:1100px;margin:auto}
+.section-label{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;font-weight:500}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(26px,4vw,38px);font-weight:800;margin-bottom:14px}
+.section-sub{color:var(--muted);max-width:560px;margin-bottom:54px;line-height:1.75}
+.divider{width:48px;height:3px;background:linear-gradient(90deg,var(--accent),var(--teal));border-radius:4px;margin-bottom:20px}
+#skills{background:var(--bg2)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.skill-cat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:border-color .25s}
+.skill-cat:hover{border-color:rgba(108,99,255,.5)}
+.skill-cat-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:16px;letter-spacing:.05em;text-transform:uppercase}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{background:rgba(108,99,255,.1);border:1px solid rgba(108,99,255,.22);color:var(--accent2);padding:5px 13px;border-radius:100px;font-size:12px;font-weight:500}
+.tag.teal{background:rgba(45,212,191,.1);border-color:rgba(45,212,191,.25);color:var(--teal)}
+.tag.pink{background:rgba(244,114,182,.1);border-color:rgba(244,114,182,.25);color:var(--pink)}
+.tag.gray{background:rgba(139,138,170,.1);border-color:rgba(139,138,170,.2);color:var(--muted)}
+.tag.orange{background:rgba(251,146,60,.1);border-color:rgba(251,146,60,.25);color:#fb923c}
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:7px;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,var(--accent),var(--teal),transparent)}
+.exp-item{margin-bottom:44px;position:relative}
+.exp-dot{position:absolute;left:-25px;top:6px;width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--teal));border:2px solid var(--bg)}
+.exp-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.exp-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700}
+.exp-company{color:var(--teal);font-size:14px;font-weight:500;margin-bottom:4px}
+.exp-date{background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.25);color:var(--teal);padding:4px 12px;border-radius:100px;font-size:11px;white-space:nowrap;height:fit-content;margin-top:4px}
+.exp-list{list-style:none;color:var(--muted)}
+.exp-list li{padding:4px 0;padding-left:18px;position:relative;font-size:14px}
+.exp-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:12px}
+#projects{background:var(--bg2)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px;transition:all .25s;cursor:default;position:relative;overflow:hidden}
+.proj-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(108,99,255,.04),transparent);opacity:0;transition:opacity .25s}
+.proj-card:hover{border-color:rgba(108,99,255,.45);transform:translateY(-3px)}
+.proj-card:hover::after{opacity:1}
+.proj-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#8b5cf6);display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:19px}
+.proj-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px}
+.proj-desc{color:var(--muted);font-size:13px;line-height:1.65;margin-bottom:16px}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px}
+.proj-tag{background:var(--bg3);color:var(--muted);padding:4px 10px;border-radius:6px;font-size:11px;font-weight:500;border:1px solid rgba(255,255,255,.06)}
+.proj-featured{border-color:rgba(108,99,255,.45);background:rgba(108,99,255,.04)}
+.proj-featured-badge{display:inline-block;background:linear-gradient(135deg,var(--accent),#8b5cf6);color:#fff;padding:3px 10px;border-radius:100px;font-size:10px;font-weight:600;letter-spacing:.06em;margin-bottom:14px}
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:border-color .25s}
+.edu-card:hover{border-color:rgba(108,99,255,.45)}
+.edu-deg{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px}
+.edu-inst{color:var(--teal);font-size:13px;margin-bottom:10px}
+.edu-meta{display:flex;gap:10px;flex-wrap:wrap}
+.edu-pill{background:var(--bg3);color:var(--muted);padding:4px 12px;border-radius:100px;font-size:11px;border:1px solid rgba(255,255,255,.06)}
+.edu-pill.grade{background:rgba(45,212,191,.1);border-color:rgba(45,212,191,.2);color:var(--teal)}
+.contact-section-inner{max-width:640px;margin:auto;text-align:center}
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:44px 36px;position:relative;overflow:hidden;margin-top:40px}
+.contact-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--teal),var(--pink))}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px;text-align:left}
+.contact-item{background:var(--bg3);border-radius:12px;padding:16px;display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);transition:all .2s;border:1px solid transparent}
+.contact-item:hover{border-color:rgba(108,99,255,.4);background:rgba(108,99,255,.08)}
+.ci-wrap{width:36px;height:36px;border-radius:9px;background:rgba(108,99,255,.14);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-item-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.contact-item-val{font-size:13px;font-weight:500;color:var(--text)}
+footer{text-align:center;padding:28px 5%;color:var(--muted);font-size:12px;border-top:1px solid var(--border)}
+@media(max-width:760px){.hero-inner{grid-template-columns:1fr}.hero-card{display:none}.nav-links{display:none}.contact-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">FK.</div>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><span class="dot"></span>Available for opportunities</div>
+      <h1>Hi, I'm <span>Faiza Kiran</span></h1>
+      <h1 style="color:var(--muted);font-size:clamp(22px,3vw,40px);margin-top:-10px;margin-bottom:20px">Flutter Developer</h1>
+      <p class="hero-bio">Flutter Developer with hands-on experience building mobile applications using Flutter, Dart, Firebase, Supabase, REST APIs, and modern state management solutions. Passionate about clean code and high-quality mobile experiences.</p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="#projects">View Projects</a>
+        <a class="btn-outline" href="#contact">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="avatar-ring">FK</div>
+      <h3>Faiza Kiran</h3>
+      <p>Flutter Developer · Lahore, Pakistan</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-num">9+</div><div class="stat-lbl">Projects</div></div>
+        <div class="stat"><div class="stat-num">3.95</div><div class="stat-lbl">CGPA / 4.0</div></div>
+        <div class="stat"><div class="stat-num">2+</div><div class="stat-lbl">Internships</div></div>
+        <div class="stat"><div class="stat-num">5+</div><div class="stat-lbl">Technologies</div></div>
+      </div>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:faizakiran571@gmail.com">
+          <svg class="ci" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          faizakiran571@gmail.com
+        </a>
+        <a class="contact-link" href="https://github.com/faizakiran6357" target="_blank">
+          <svg class="ci" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.69c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.71.115 2.51.337 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+          github.com/faizakiran6357
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/faiza-kiran/" target="_blank">
+          <svg class="ci" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          linkedin.com/in/faiza-kiran
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-inner">
+    <span class="section-label">Technical Expertise</span>
+    <div class="divider"></div>
+    <h2 class="section-title">Skills & Technologies</h2>
+    <p class="section-sub">A comprehensive toolkit for building modern, scalable mobile applications.</p>
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <div class="skill-cat-title">Mobile Development</div>
+        <div class="tags">
+          <span class="tag">Flutter</span>
+          <span class="tag">Dart</span>
+          <span class="tag">Android</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">State Management</div>
+        <div class="tags">
+          <span class="tag teal">GetX</span>
+          <span class="tag teal">Riverpod</span>
+          <span class="tag teal">BLoC</span>
+          <span class="tag teal">Provider</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">Backend & APIs</div>
+        <div class="tags">
+          <span class="tag pink">Firebase</span>
+          <span class="tag pink">Supabase</span>
+          <span class="tag pink">REST APIs</span>
+          <span class="tag pink">Socket.IO</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">QA Testing</div>
+        <div class="tags">
+          <span class="tag orange">Manual Testing</span>
+          <span class="tag orange">Flutter Testing</span>
+          <span class="tag orange">Unit Testing</span>
+          <span class="tag orange">Widget Testing</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">Architecture & Tools</div>
+        <div class="tags">
+          <span class="tag gray">Clean Architecture</span>
+          <span class="tag gray">MVC</span>
+          <span class="tag gray">Git/GitHub</span>
+          <span class="tag gray">Figma</span>
+          <span class="tag gray">VS Code</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">Other Skills</div>
+        <div class="tags">
+          <span class="tag gray">HTML/CSS</span>
+          <span class="tag gray">Python</span>
+          <span class="tag gray">C++</span>
+          <span class="tag gray">UI/UX Basics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-inner">
+    <span class="section-label">Work History</span>
+    <div class="divider"></div>
+    <h2 class="section-title">Experience</h2>
+    <p class="section-sub">Building real-world applications and solving complex problems professionally.</p>
+    <div class="timeline">
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Flutter Developer Intern</div>
+            <div class="exp-company">Codecoy Technologies – Johar Town, Lahore</div>
+          </div>
+          <span class="exp-date">Jan 2026 – Present</span>
+        </div>
+        <ul class="exp-list">
+          <li>Developing Flutter applications using GetX for reactive and efficient state management</li>
+          <li>Integrating RESTful APIs and third-party services to enhance app functionality</li>
+          <li>Implemented real-time chat features using Socket.IO for seamless live communication</li>
+          <li>Building clean, responsive UI components with focus on performance and user experience</li>
+          <li>Exploring AI-powered features integration within Flutter apps</li>
+          <li>Collaborating with team through Git/GitHub following standard development workflows</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Flutter Developer Intern</div>
+            <div class="exp-company">Raheem Solutions (Pvt.) Ltd</div>
+          </div>
+          <span class="exp-date">Aug 2025 – Dec 2025</span>
+        </div>
+        <ul class="exp-list">
+          <li>Developed Flutter apps with Firebase, Supabase, REST APIs integration</li>
+          <li>Implemented state management with Riverpod and BLoC patterns</li>
+          <li>Built clean UI components and collaborated through Git/GitHub workflows</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-inner">
+    <span class="section-label">Portfolio</span>
+    <div class="divider"></div>
+    <h2 class="section-title">Projects</h2>
+    <p class="section-sub">A selection of mobile applications built with Flutter and modern backend technologies.</p>
+    <div class="projects-grid">
+      <div class="proj-card proj-featured">
+        <div class="proj-featured-badge">FEATURED</div>
+        <div class="proj-icon">💈</div>
+        <div class="proj-name">Barberly</div>
+        <p class="proj-desc">Barber appointment booking app with real-time chat between user and barber, multi-language support, and Clean Architecture for scalable code.</p>
+        <div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">GetX</span><span class="proj-tag">REST APIs</span><span class="proj-tag">Socket.IO</span><span class="proj-tag">Clean Architecture</span></div>
+      </div>
+      <div class="proj-card proj-featured">
+        <div class="proj-featured-badge">FEATURED</div>
+        <div class="proj-icon">🤝</div>
+        <div class="proj-name">Influencer Marketplace</div>
+        <p class="proj-desc">Platform connecting influencers and brands with real-time database operations, authentication, and fully responsive custom UI components.</p>
+        <div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">Supabase</span><span class="proj-tag">Riverpod</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-icon">⭕</div>
+        <div class="proj-name">Circlo App</div>
+        <p class="proj-desc">Social circle-based app with user groups, posts, Supabase authentication and storage, and scalable Riverpod state management.</p>
+        <div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">Supabase</span><span class="proj-tag">Riverpod</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-icon">💬</div>
+        <div class="proj-name">Chat Application</div>
+        <p class="proj-desc">Real-time messaging app with Firebase Firestore, user authentication, profile management, and clean UI with Riverpod state management.</p>
+        <div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">Firebase</span><span class="proj-tag">Riverpod</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-icon">🔍</div>
+        <div class="proj-name">Lost and Found App</div>
+        <p class="proj-desc">Users can create, search, and update lost or found items. Firebase backend for items, images, and profiles with custom widgets.</p>
+        <div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">Firebase</span><span class="proj-tag">Riverpod</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-icon">🚌</div>
+        <div class="proj-name">Travel Assistant</div>
+        <p class="proj-desc">Final year project — ride booking app with user login, ride request, driver tracking, and real-time ride status updates.</p>
+        <div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">Final Year Project</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-icon">🧠</div>
+        <div class="proj-name">Quiz App</div>
+        <p class="proj-desc">Category-based quizzes with timers, scoring, local data storage, and clean UI animations.</p>
+        <div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">Dart</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-icon">😂</div>
+        <div class="proj-name">Random Meme App</div>
+        <p class="proj-desc">Fetches random memes from public APIs with a lightweight responsive UI and smooth loading indicators.</p>
+        <div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">REST API</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-icon">🍽️</div>
+        <div class="proj-name">Recipes App</div>
+        <p class="proj-desc">Fetches recipes from a public API with category-based browsing, detailed recipe screens, and a clean responsive UI.</p>
+        <div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">Dart</span><span class="proj-tag">REST API</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="section-inner">
+    <span class="section-label">Academic Background</span>
+    <div class="divider"></div>
+    <h2 class="section-title">Education</h2>
+    <p class="section-sub" style="margin-bottom:32px">Strong academic foundation with outstanding performance throughout.</p>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-deg">BS Information Technology</div>
+        <div class="edu-inst">University of Agriculture Faisalabad – Constituent College Toba Tek Singh</div>
+        <div class="edu-meta">
+          <span class="edu-pill">2021 – 2025</span>
+          <span class="edu-pill grade">CGPA: 3.95 / 4.00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-section-inner">
+    <span class="section-label">Get In Touch</span>
+    <div class="divider" style="margin:12px auto 20px"></div>
+    <h2 class="section-title">Let's Connect</h2>
+    <p style="color:var(--muted);line-height:1.75">Open to new opportunities, collaborations, and interesting projects. Feel free to reach out!</p>
+    <div class="contact-card">
+      <div class="contact-grid">
+        <a class="contact-item" href="mailto:faizakiran571@gmail.com">
+          <div class="ci-wrap"><svg width="18" height="18" fill="none" stroke="var(--accent2)" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></div>
+          <div><div class="contact-item-lbl">Email</div><div class="contact-item-val">faizakiran571@gmail.com</div></div>
+        </a>
+        <a class="contact-item" href="tel:+923238329335">
+          <div class="ci-wrap"><svg width="18" height="18" fill="none" stroke="var(--accent2)" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><div class="contact-item-lbl">Phone</div><div class="contact-item-val">+92 323 832 9335</div></div>
+        </a>
+        <a class="contact-item" href="https://github.com/faizakiran6357" target="_blank">
+          <div class="ci-wrap"><svg width="18" height="18" fill="var(--accent2)" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.69c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.71.115 2.51.337 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg></div>
+          <div><div class="contact-item-lbl">GitHub</div><div class="contact-item-val">faizakiran6357</div></div>
+        </a>
+        <a class="contact-item" href="https://www.linkedin.com/in/faiza-kiran/" target="_blank">
+          <div class="ci-wrap"><svg width="18" height="18" fill="var(--accent2)" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
+          <div><div class="contact-item-lbl">LinkedIn</div><div class="contact-item-val">faiza-kiran</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed & built with ❤️ &nbsp;·&nbsp; Faiza Kiran © 2025 &nbsp;·&nbsp; Flutter Developer</p>
+</footer>
+</body>
+</html>
